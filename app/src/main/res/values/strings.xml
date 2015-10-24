@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Broadcast Tile</string>
+    <string name="broadcast_tile_label">Custom Tile</string>
+    <string name="broadcast_tile_button">Configure Tile</string>
+</resources>
