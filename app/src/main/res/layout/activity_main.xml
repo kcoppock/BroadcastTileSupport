@@ -18,10 +18,22 @@
         android:layout_weight="1"/>
 
     <Button
-        android:id="@+id/tile_broadcast"
+        android:id="@+id/tile_broadcast_show"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:minWidth="200dp"
-        android:text="@string/broadcast_tile_button"/>
+        android:onClick="onShowTile"
+        android:text="@string/broadcast_tile_show_button"/>
+
+    <Button
+        android:id="@+id/tile_broadcast_hide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:minWidth="200dp"
+        android:onClick="onHideTile"
+        android:text="@string/broadcast_tile_hide_button"/>
+
+
 </LinearLayout>

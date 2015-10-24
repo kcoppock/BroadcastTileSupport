@@ -1,6 +1,7 @@
-package com.kcoppock.broadcasttile;
+package com.kcoppock.broadcasttilesupport;
 
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.*;
 
@@ -22,6 +23,7 @@ public final class BroadcastTileIntentBuilder {
     private String mLabel;
     private String mContentDescription;
     private int mIconResource;
+    private String mIconPackage;
     private PendingIntent mOnClickIntent;
     private String mOnClickUriString;
     private PendingIntent mOnLongClickIntent;
@@ -35,11 +37,12 @@ public final class BroadcastTileIntentBuilder {
      *
      * @throws IllegalArgumentException if the action is invalid
      */
-    public BroadcastTileIntentBuilder(@NonNull String action) {
+    public BroadcastTileIntentBuilder(@NonNull Context context, @NonNull String action) {
         if (!isValidAction(action)) {
             throw new IllegalArgumentException(
                     "Action can only contain alphanumeric characters and periods.");
         }
+        mIconPackage = context.getPackageName();
         mAction = action;
     }
 
@@ -80,7 +83,7 @@ public final class BroadcastTileIntentBuilder {
     @NonNull
     public BroadcastTileIntentBuilder setOnClickPendingIntent(@Nullable PendingIntent pi) {
         mOnClickIntent = pi;
-        mOnLongClickUriString = null;
+        mOnClickUriString = null;
         return this;
     }
 
@@ -146,7 +149,7 @@ public final class BroadcastTileIntentBuilder {
         intent.putExtra(EXTRA_CONTENT_DESCRIPTION, mContentDescription);
         intent.putExtra(EXTRA_LABEL, mLabel);
         intent.putExtra(EXTRA_ICON_RESOURCE_ID, mIconResource);
-        intent.putExtra(EXTRA_ICON_PACKAGE, BuildConfig.APPLICATION_ID);
+        intent.putExtra(EXTRA_ICON_PACKAGE, mIconPackage);
         intent.putExtra(EXTRA_ON_CLICK_PENDING_INTENT, mOnClickIntent);
         intent.putExtra(EXTRA_ON_CLICK_URI, mOnClickUriString);
         intent.putExtra(EXTRA_ON_LONG_CLICK_PENDING_INTENT, mOnLongClickIntent);
